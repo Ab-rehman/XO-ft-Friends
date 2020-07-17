@@ -1,0 +1,153 @@
+package com.example.xoftfriends;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.gridlayout.widget.GridLayout;
+import java.util.Random;
+
+public class Game extends AppCompatActivity {
+  int activePlayer;
+  
+  int back = 0;
+  
+  int cnt = 0;
+  
+  int comp;
+  
+  Random compMove = new Random();
+  
+  boolean compTurn = false;
+  
+  int[] gameState = new int[] { 2, 2, 2, 2, 2, 2, 2, 2, 2 };
+  
+  boolean gameactive;
+  
+  int noOfMoves = 0;
+  
+  int tappedCounter;
+  
+  int[][] winningPositions;
+  
+  public Game() {
+    int[] arrayOfInt1 = { 0, 1, 2 };
+    int[] arrayOfInt2 = { 0, 3, 6 };
+    int[] arrayOfInt3 = { 1, 4, 7 };
+    int[] arrayOfInt4 = { 2, 5, 8 };
+    int[] arrayOfInt5 = { 0, 4, 8 };
+    this.winningPositions = new int[][] { arrayOfInt1, { 3, 4, 5 }, { 6, 7, 8 }, arrayOfInt2, arrayOfInt3, arrayOfInt4, arrayOfInt5, { 2, 4, 6 } };
+    this.activePlayer = 0;
+    this.gameactive = true;
+  }
+  
+  public void back(View paramView) {
+    if (this.back == 1) {
+      setContentView(2131427356);
+      ConstraintLayout constraintLayout = (ConstraintLayout)findViewById(2131230800);
+      ImageView imageView1 = (ImageView)findViewById(2131230821);
+      ImageView imageView2 = (ImageView)findViewById(2131230919);
+      ImageView imageView3 = (ImageView)findViewById(2131230822);
+      ImageView imageView4 = (ImageView)findViewById(2131230820);
+      Button button1 = (Button)findViewById(2131230864);
+      Button button2 = (Button)findViewById(2131230926);
+      Button button3 = (Button)findViewById(2131230813);
+      constraintLayout.animate().alpha(1.0F);
+      imageView4.animate().alpha(1.0F).scaleX(1.0F).scaleY(1.0F);
+      imageView1.animate().alpha(1.0F);
+      imageView2.animate().alpha(1.0F);
+      imageView3.animate().alpha(1.0F);
+      button1.animate().alpha(1.0F);
+      button2.animate().alpha(1.0F);
+      button3.animate().alpha(1.0F);
+      this.back = -1;
+    } else {
+      Toast.makeText((Context)this, "Press again to go back", 0).show();
+    } 
+    this.back++;
+  }
+  
+  public void dropInTwo(View paramView) {
+    ImageView imageView = (ImageView)paramView;
+    int i = Integer.parseInt(imageView.getTag().toString());
+    this.tappedCounter = i;
+    int[] arrayOfInt = this.gameState;
+    if (arrayOfInt[i] == 2 && this.gameactive) {
+      null = this.activePlayer;
+      arrayOfInt[i] = null;
+      this.noOfMoves++;
+      if (null == 0) {
+        imageView.setImageResource(2131099756);
+        imageView.animate().alpha(0.0F);
+        imageView.animate().rotationBy(1080.0F).alpha(1.0F).setDuration(500L);
+        this.activePlayer = 1;
+      } else {
+        imageView.setImageResource(2131099746);
+        imageView.animate().alpha(0.0F);
+        imageView.animate().rotationBy(1080.0F).alpha(1.0F).setDuration(500L);
+        this.activePlayer = 0;
+      } 
+      for (int[] arrayOfInt1 : this.winningPositions) {
+        int[] arrayOfInt2 = this.gameState;
+        if (arrayOfInt2[arrayOfInt1[0]] == arrayOfInt2[arrayOfInt1[1]] && arrayOfInt2[arrayOfInt1[1]] == arrayOfInt2[arrayOfInt1[2]] && arrayOfInt2[arrayOfInt1[0]] != 2) {
+          String str;
+          if (this.activePlayer == 0) {
+            str = "Chandler";
+          } else {
+            str = "Joey";
+          } 
+          this.gameactive = false;
+          TextView textView = (TextView)findViewById(2131230932);
+          Button button = (Button)findViewById(2131230869);
+          StringBuilder stringBuilder = new StringBuilder();
+          stringBuilder.append(str);
+          stringBuilder.append(" won the game");
+          textView.setText(stringBuilder.toString());
+          textView.setVisibility(0);
+          button.setVisibility(0);
+        } else if (this.noOfMoves == 9 && this.gameactive) {
+          this.gameactive = false;
+          TextView textView = (TextView)findViewById(2131230932);
+          Button button = (Button)findViewById(2131230869);
+          textView.setText("Joey Doesn't Share the Title");
+          textView.setVisibility(0);
+          button.setVisibility(0);
+        } 
+      } 
+    } 
+  }
+  
+  protected void onCreate(Bundle paramBundle) {
+    super.onCreate(paramBundle);
+    setContentView(2131427358);
+  }
+  
+  public void playAgainXO(View paramView) {
+    TextView textView = (TextView)findViewById(2131230932);
+    Button button = (Button)findViewById(2131230869);
+    textView.setVisibility(4);
+    button.setVisibility(4);
+    GridLayout gridLayout = (GridLayout)findViewById(2131230824);
+    int i;
+    for (i = 0; i < gridLayout.getChildCount(); i++)
+      ((ImageView)gridLayout.getChildAt(i)).setImageDrawable(null); 
+    i = 0;
+    while (true) {
+      int[] arrayOfInt = this.gameState;
+      if (i < arrayOfInt.length) {
+        arrayOfInt[i] = 2;
+        i++;
+        continue;
+      } 
+      this.gameactive = true;
+      this.activePlayer = 0;
+      this.noOfMoves = 0;
+      return;
+    } 
+  }
+}
