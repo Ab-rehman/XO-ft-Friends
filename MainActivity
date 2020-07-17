@@ -1,0 +1,72 @@
+package com.example.xoftfriends;
+
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
+public class MainActivity extends GameOnePlayer {
+  public void exit(View paramView) {
+    System.exit(0);
+  }
+  
+  protected void onCreate(Bundle paramBundle) {
+    super.onCreate(paramBundle);
+    setContentView(2131427356);
+    getWindow().setFlags(1024, 1024);
+    getSupportActionBar().hide();
+    ConstraintLayout constraintLayout = (ConstraintLayout)findViewById(2131230800);
+    final ImageView friendstitle = (ImageView)findViewById(2131230821);
+    final ImageView tictactoe = (ImageView)findViewById(2131230919);
+    final ImageView ft = (ImageView)findViewById(2131230822);
+    final ImageView friends = (ImageView)findViewById(2131230820);
+    final Button onePlayer = (Button)findViewById(2131230864);
+    final Button twoPlayer = (Button)findViewById(2131230926);
+    final Button exit = (Button)findViewById(2131230813);
+    imageView1.animate().translationXBy(1500.0F);
+    imageView2.animate().translationXBy(-1500.0F);
+    imageView3.animate().translationXBy(-1500.0F);
+    constraintLayout.animate().alpha(1.0F).setDuration(2500L);
+    constraintLayout.animate().alpha(1.0F).setDuration(2500L);
+    Handler handler = new Handler();
+    handler.postDelayed(new Runnable() {
+          public void run() {
+            friends.animate().alpha(1.0F).scaleX(1.5F).scaleY(1.5F).setDuration(1400L);
+          }
+        },  2000L);
+    handler.postDelayed(new Runnable() {
+          public void run() {
+            friends.animate().alpha(1.0F).scaleX(0.65F).scaleY(0.65F).setDuration(1000L);
+          }
+        },  3400L);
+    handler.postDelayed(new Runnable() {
+          public void run() {
+            friends.animate().alpha(1.0F).scaleX(1.0F).scaleY(1.0F).setDuration(700L);
+          }
+        },  4300L);
+    handler.postDelayed(new Runnable() {
+          public void run() {
+            friendstitle.animate().translationXBy(-1500.0F).alpha(1.0F).setDuration(1500L);
+            tictactoe.animate().translationXBy(1500.0F).alpha(1.0F).setDuration(1500L);
+            ft.animate().translationXBy(1500.0F).alpha(1.0F).setDuration(1500L);
+          }
+        },  5000L);
+    handler.postDelayed(new Runnable() {
+          public void run() {
+            onePlayer.animate().alpha(1.0F);
+            twoPlayer.animate().alpha(1.0F);
+            exit.animate().alpha(1.0F);
+          }
+        },  6500L);
+  }
+  
+  public void onePlayer(View paramView) {
+    setContentView(2131427359);
+  }
+  
+  public void twoPlayer(View paramView) {
+    setContentView(2131427358);
+  }
+}
